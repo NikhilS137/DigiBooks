@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   constructor(private service:DigitalBooksService,public router:Router) {
    
    }
-
+   isLoggedIn = false;
+   UserName:string="";
   ModalTitle:string="";
   ActivateSignupComp :boolean=false;
 
@@ -39,7 +40,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.service.CheckUserLoggedInOrNot();
-    this.isUserLoggedIn(this.userLoggedIn);
+     this.isUserLoggedIn(this.userLoggedIn);
+    this.isLoggedIn = this.userLoggedIn;
+    this.getUserNameAndRole();
      console.log("in ngonInit =" + this.userLoggedIn);
   }
 
@@ -48,7 +51,9 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.isUserLoggedIn(false);
-    this.router.navigate(['/signin']);        
+    this.router.navigate(['/signin']).then(() => {
+      window.location.reload();
+    });          
   } 
 
   isUserLoggedIn(loggedIn:boolean){
@@ -58,8 +63,15 @@ export class HeaderComponent implements OnInit {
     else{
       this.showSignInSignUp =true;
     }
+    
     console.log("showSignInSignUp =" + this.showSignInSignUp);
     console.log("loggedIn =" + loggedIn);
+  }
+
+  getUserNameAndRole(){
+   console.log(localStorage.getItem('user'));
+   let user = JSON.parse(localStorage.getItem('user') || '');
+   this.UserName = user.userName;
   }
 
 }

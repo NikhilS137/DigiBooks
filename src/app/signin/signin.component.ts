@@ -33,17 +33,21 @@ export class SigninComponent implements OnInit {
            // store jwt token in local storage to keep user logged in between page refreshes
            localStorage.setItem('token', this.response.token);
            localStorage.setItem('user', JSON.stringify(this.response.user));
-           let headerComponentObj = new HeaderComponent(this.service,this.router);
-           headerComponentObj.ngOnInit();
+          //  let headerComponentObj = new HeaderComponent(this.service,this.router);
+          //  headerComponentObj.ngOnInit();
 
           // this.nameEmitter.emit(true);  
           if(this.response.user.roleId == 1) //This is Author
           {
-          this.router.navigate(['/author']);  
+          this.router.navigate(['/author']).then(() => {
+            window.location.reload();
+          });  
           }
           else{ 
             // This is Reader
-            this.router.navigate(['/reader']);  
+            this.router.navigate(['/reader']).then(() => {
+              window.location.reload();
+            });   
           }
 
         } 

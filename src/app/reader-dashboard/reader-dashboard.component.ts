@@ -51,7 +51,14 @@ export class ReaderDashboardComponent implements OnInit {
 
       readBookClick(item:Book){
         this.book =item; 
+        console.log("item =" +JSON.stringify(item));
+        if(item.active)
+        {
         this.bookContent= this.book.bookContent;
         this.readBookdisplay= 'block';
+        }
+        else{
+          alert('The book has blocked by author.');
+        }
       }
 }

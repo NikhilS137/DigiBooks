@@ -75,4 +75,9 @@ export class DigitalBooksService {
     GetBookListReader(emailId :string):Observable<any>{
         return this.https.get<any>(this.baseUrl +"GetBooksWithStatus/"+emailId);
     }
+
+    //To Update the book Status
+    UpdateBookStatus(bookID:string,userID:string,status:boolean):Observable<any>{
+        return this.https.put<any>(this.baseUrl +"UpdateBookStatus/"+bookID+"/"+userID+"/"+status,"");
+    }
 }

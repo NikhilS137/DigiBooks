@@ -8,11 +8,17 @@
         <!-- <button type="button" class="btn btn-primary float-right m-2" (click)="openSignInModal()">Signin</button>
         <button type="button" class="btn btn-primary float-right m-2" (click)="openModal()">Signup</button> -->
 
-        <a class="btn btn-primary float-right m-2" *ngIf="showSignInSignUp"  routerLink="/searchbooks" >Home</a>
+        <!-- <a class="btn btn-primary float-right m-2" *ngIf="showSignInSignUp"  routerLink="/searchbooks" >Home</a>
         <a class="btn btn-primary float-right m-2" *ngIf="showSignInSignUp"  routerLink="/signin" >Sign In</a>
         <a class="btn btn-primary float-right m-2" *ngIf="showSignInSignUp" routerLink="/signup" >Sign Up</a>
         <a class="btn btn-primary float-right m-2" *ngIf="!showSignInSignUp"  (click)="signOutClick()" >Sign Out</a>
-       
+        -->
+
+        <a class="btn btn-primary float-right m-2" *ngIf="!isLoggedIn"  routerLink="/searchbooks" >Home</a>
+        <a class="btn btn-primary float-right m-2" *ngIf="!isLoggedIn"  routerLink="/signin" >Sign In</a>
+        <a class="btn btn-primary float-right m-2" *ngIf="!isLoggedIn" routerLink="/signup" >Sign Up</a>
+        <a class="btn btn-primary float-right m-2" *ngIf="isLoggedIn"  (click)="signOutClick()" >Sign Out</a>
+        <div class="float-right m-2" *ngIf="isLoggedIn">Welcome {{UserName}}</div>
       </form>
     </div>
     

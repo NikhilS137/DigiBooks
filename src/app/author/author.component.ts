@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 import { DigitalBooksService } from '../services/digitalbooks.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class AuthorComponent implements OnInit {
   ModalTitle:string="";
   display = "none";
   userID : string ='';
-  constructor(private service:DigitalBooksService) { }
+  isTesting : boolean =true;
+  book : any;
+  constructor(private service:DigitalBooksService, public router:Router) { }
 
   ngOnInit(): void {
     this.service.CheckUserLoggedInOrNot();
@@ -23,6 +27,8 @@ export class AuthorComponent implements OnInit {
   GetUserID(){
     let values = JSON.parse(localStorage.getItem("user") || '');
     this.userID = values.userId;
+    let headerComponentObj = new HeaderComponent(this.service,this.router);
+    headerComponentObj.ngOnInit();
   }
   
   loadBooks(){
@@ -38,5 +44,15 @@ export class AuthorComponent implements OnInit {
   
     onCloseHandled() {
       this.display = "none";
+    }
+
+    activeInactiveClick(item:any){
+      this.book =item; 
+      this.book.active = !item.active;
+      console.log("item Value =" + JSON.stringify(item));
+      console.log(this.book);
+      this.service.UpdateBookStatus(this.book.bookId,this.userID,this.book.active).subscribe(
+        response => { alert('Status updated Successfully.'); }
+      )
     }
 }
