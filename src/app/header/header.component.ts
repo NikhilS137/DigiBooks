@@ -10,8 +10,17 @@ import { DigitalBooksService } from '../services/digitalbooks.service';
 export class HeaderComponent implements OnInit {
  
   constructor(private service:DigitalBooksService,public router:Router) {
-   
+  //  // Subscribe here, this will automatically update 
+  //       // "isUserLoggedIn" whenever a change to the subject is made.
+  //       this.service.isUserLoggedIn.subscribe( value => {
+  //         this.isLoggedIn = value;
+  //         this.ActivateSignupComp =value;
+  //     });
+
+  //     console.log("ActivateSignupComp =" +this.ActivateSignupComp);
+  //     console.log("isLoggedIn =" +this.isLoggedIn);
    }
+   alert:boolean=false;
    isLoggedIn = false;
    UserName:string="";
   ModalTitle:string="";
@@ -40,7 +49,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.service.CheckUserLoggedInOrNot();
-     this.isUserLoggedIn(this.userLoggedIn);
+    //  this.isUserLoggedIn(this.userLoggedIn);
     this.isLoggedIn = this.userLoggedIn;
     this.getUserNameAndRole();
      console.log("in ngonInit =" + this.userLoggedIn);
@@ -50,28 +59,45 @@ export class HeaderComponent implements OnInit {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.isUserLoggedIn(false);
-    this.router.navigate(['/signin']).then(() => {
-      window.location.reload();
-    });          
+    // this.isUserLoggedIn(false);
+
+    this.router.navigate(['/signin'])
   } 
 
-  isUserLoggedIn(loggedIn:boolean){
-    if(loggedIn){
-      this.showSignInSignUp =false;
-    }
-    else{
-      this.showSignInSignUp =true;
-    }
+  // isUserLoggedIn(loggedIn:boolean){
+  //   if(loggedIn){
+  //     this.showSignInSignUp =false;
+  //     this.alert=true;
+  //   }
+  //   else{
+  //     this.showSignInSignUp =true;
+  //     this.alert=false;
+  //   }
     
-    console.log("showSignInSignUp =" + this.showSignInSignUp);
-    console.log("loggedIn =" + loggedIn);
-  }
+  //   console.log("showSignInSignUp =" + this.showSignInSignUp);
+  //   console.log("loggedIn =" + loggedIn);
+  // }
 
   getUserNameAndRole(){
    console.log(localStorage.getItem('user'));
    let user = JSON.parse(localStorage.getItem('user') || '');
    this.UserName = user.userName;
   }
+
+  closeAlert(){
+    this.alert=false;
+  }
+
+  isUserLoggedIn(){
+    
+    // return localStorage.getItem("token");
+    if(localStorage.getItem("token"))
+    {
+      this.getUserNameAndRole();
+      return true;
+    }
+    return false;
+  }
+
 
 }

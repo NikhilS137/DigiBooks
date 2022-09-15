@@ -10,6 +10,7 @@ import { DigitalBooksService } from '../services/digitalbooks.service';
 })
 export class AuthorComponent implements OnInit {
 
+  alert:boolean=false;
   searchResult: any;
   ModalTitle:string="";
   display = "none";
@@ -52,7 +53,16 @@ export class AuthorComponent implements OnInit {
       console.log("item Value =" + JSON.stringify(item));
       console.log(this.book);
       this.service.UpdateBookStatus(this.book.bookId,this.userID,this.book.active).subscribe(
-        response => { alert('Status updated Successfully.'); }
+        response => { this.alert=true;
+           setTimeout(() => {
+                              this.alert=false;
+                          }, 4000);} //alert will disappear after 4 sec
+        // alert('Status updated Successfully.'); 
       )
     }
+
+    closeAlert(){
+      this.alert=false;
+    }
+  
 }

@@ -1,5 +1,5 @@
 
-
+<div class="container">
      <div class="form-group">
       <label for="bookName">Book Name</label>
       <input type="text" class="form-control" id="bookName" aria-describedby="book name" [(ngModel)]="book.bookName" placeholder="Enter Book Name">
@@ -20,19 +20,28 @@
             
               <input type="number" class="form-control" [(ngModel)]="book.price"   placeholder="Price">
             
-    </div>
+        </div>
        <div class="form-group">
         <label for="publisher">Publisher</label>
         <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publisher"publisher  aria-describedby="publisher" placeholder="Enter Publisher">
       </div>
- <div class="form-group">
+     <div class="form-group">
         <label for="bookContent">Book Content</label>
         <input type="text" class="form-control" id="bookContent" [(ngModel)]="book.bookContent"  aria-describedby="book content" placeholder="Enter Book Content">
       </div>
         <div class="form-group">
         <label for="publishedDate">Published Date</label>
-        <input type="datetime" class="form-control" id="publishedDate" [(ngModel)]="book.publishedDate"  aria-describedby="published date" placeholder="Enter Published Date">
+        <input type="date" class="form-control" id="publishedDate" [(ngModel)]="book.publishedDate"  aria-describedby="published date" placeholder="Enter Published Date">
       </div>
    
     <button type="submit" class="btn btn-primary" (click)="onSubmitClick()">Submit</button> 
-  
+    <br/>
+  </div>
+
+
+  <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Status changes successfully.
+      <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>

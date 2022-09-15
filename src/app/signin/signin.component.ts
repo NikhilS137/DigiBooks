@@ -39,15 +39,15 @@ export class SigninComponent implements OnInit {
           // this.nameEmitter.emit(true);  
           if(this.response.user.roleId == 1) //This is Author
           {
-          this.router.navigate(['/author']).then(() => {
-            window.location.reload();
-          });  
+          this.router.navigate(['/author'])
           }
           else{ 
+            // this.service.isUserLoggedIn.next(true);
             // This is Reader
-            this.router.navigate(['/reader']).then(() => {
-              window.location.reload();
-            });   
+            this.router.navigate(['/reader']);
+            // .then(() => {
+            //   window.location.reload();
+            // });   
           }
 
         } 

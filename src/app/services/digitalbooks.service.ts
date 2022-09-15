@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Book } from '../Model/bookmodel';
 import { purchase } from '../Model/purchasemodel';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,8 @@ import { purchase } from '../Model/purchasemodel';
 export class DigitalBooksService {
 
     baseUrl = 'https://localhost:7271/';
+
+    // public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     
     constructor(private https: HttpClient,public router:Router) {}
 

@@ -11,6 +11,7 @@ import { DigitalBooksService } from '../services/digitalbooks.service';
 })
 export class AddbookComponent implements OnInit {
 
+  alert:boolean=false;
   CategoryList:any[] =[];
   books:Book[] = [];
   book : Book = {
@@ -51,10 +52,20 @@ export class AddbookComponent implements OnInit {
   onSubmitClick(){
     this.service.SaveBook(this.book).subscribe(
       response => { 
-        alert('Book Added Successfully');
+        // alert('Book Added Successfully');
+        this.alert=true;
+           setTimeout(() => {
+                              this.alert=false;
+                          }, 4000); //alert will disappear after 4 sec
         this.router.navigate(['/author']);     
     }
     );
   }
+
+  
+  closeAlert(){
+    this.alert=false;
+  }
+
 
 }

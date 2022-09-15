@@ -8,6 +8,7 @@ import { DigitalBooksService } from '../services/digitalbooks.service';
 })
 export class SignupComponent implements OnInit {
 
+  alert:boolean=false;
   RoleList : any[] =[];
   radioSel:any;
   radioSelected:any;
@@ -49,7 +50,12 @@ export class SignupComponent implements OnInit {
     }
 
     this.service.AddUser(val).subscribe(
-      response => { alert('User Added Successfully.'); this.clearControls();}
+      response => { //alert('User Added Successfully.');
+        this.alert=true;
+           setTimeout(() => {
+                              this.alert=false;
+                          }, 4000); //alert will disappear after 4 sec
+       this.clearControls();}
       
     )
   }
@@ -62,5 +68,10 @@ export class SignupComponent implements OnInit {
    this.firstName = "",
    this.lastName =""
   }
+    
+  closeAlert(){
+    this.alert=false;
+  }
+
 
 }
