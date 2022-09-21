@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ShowBooksComponent } from '../searchbooks/show-books/show-books.component';
@@ -15,6 +16,20 @@ export class SigninComponent implements OnInit {
   token : string="";
   usernameC:any;
   passwordC:any;
+
+  signinForm = new FormGroup({
+    user : new FormControl('',[Validators.required]),
+    password : new FormControl('',[Validators.required])
+  })
+
+  get user(){
+    return this.signinForm.get('user');
+  }
+
+  get password(){
+    return this.signinForm.get('password');
+  }
+
   constructor(private service: DigitalBooksService,public router:Router) { }
 
   ngOnInit(): void {
@@ -22,9 +37,12 @@ export class SigninComponent implements OnInit {
 
   login(){
     var val = {
-      userName : this.usernameC,
-      password : this.passwordC
+      // userName : this.usernameC,
+      // password : this.passwordC
+      userName : this.signinForm.controls['user'].value,
+      password : this.signinForm.controls['password'].value
     }
+
     this.service.Login(val).subscribe(
       response => {  this.response = response; 
 

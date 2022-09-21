@@ -17,6 +17,7 @@ import { AddbookComponent } from './addbook/addbook.component'
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { ReaderDashboardComponent } from './reader-dashboard/reader-dashboard.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { ReaderDashboardComponent } from './reader-dashboard/reader-dashboard.co
     AuthorComponent,
     AddbookComponent,
     PurchaseComponent,
-    ReaderDashboardComponent
+    ReaderDashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

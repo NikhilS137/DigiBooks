@@ -1,3 +1,29 @@
+<!-- 
+<div *nfIf="book != null"> -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author </th>
+            <th>Publisher </th>
+            <th>Price</th>
+            <th>Publish Date</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="book != null ? func() : false">
+            <td>{{ bookDetails.title   }}</td>
+            <td>{{ bookDetails.author }}</td>
+            <td>{{ bookDetails.publisher}}</td>
+            <td>{{ bookDetails.price}}</td>
+            <td>{{ bookDetails.publishedDate | date}}</td>
+            <td>{{ bookDetails.categoryName}}</td>
+        </tr>
+    </tbody>
+</table>
+<!-- </div> -->
+
 <div class="cards-container">
     <div class="cards-form">
       <form #form="ngForm" (ngSubmit)="onSubmit()">
@@ -17,5 +43,13 @@
       <div class="card-row-details" >
         <span>{{ book.bookName }}</span>
       </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Book purchased successfully.
+      <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>

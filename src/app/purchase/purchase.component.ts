@@ -8,21 +8,28 @@ import { DigitalBooksService } from '../services/digitalbooks.service';
   styleUrls: ['./purchase.component.css']
 })
 export class PurchaseComponent implements OnInit {
-
+  @Input() book:any;
   @Input() bookID:any;
+ 
+  alert:boolean=false;
   bookHistoryList : any =[];
   display = "none";
+  bookDetails : any;
 
   objpurchase : purchase={
     PurchaseId: 0,
     EmailId : '',
     BookId : 0,
-    PaymentMode : '',
+    PaymentMode : 'Card',
     IsRefunded : 'Y'
   }
   constructor(private services: DigitalBooksService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  }
+  func(){
+    this.bookDetails = this.book;
+    return true;
   }
 
   loadBookHistory(){
@@ -37,12 +44,21 @@ export class PurchaseComponent implements OnInit {
   onSubmit(){
     this.objpurchase.BookId = this.bookID;
     this.services.PurchaseBook(this.objpurchase).subscribe(
-      response => { alert("Book Purchased Successfully.");
+      response => { 
+        this.alert=true;
+           setTimeout(() => {
+                              this.alert=false;
+                          }, 4000); //alert will disappear after 4 sec
+        // alert("Book Purchased Successfully.");
       this.loadBookHistory(); }
     )
   }
   onFocusOutEvent(event: any){
     this.loadBookHistory();
  }
+
+ closeAlert(){
+  this.alert=false;
+}
  
 }

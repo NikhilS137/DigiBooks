@@ -13,6 +13,8 @@ export class SignupComponent implements OnInit {
   radioSel:any;
   radioSelected:any;
 
+  
+
   firstName :string="";
   lastName : string ="";
   userName : string ="";
@@ -48,6 +50,8 @@ export class SignupComponent implements OnInit {
       firstName: this.firstName,
       lastName: this.lastName
     }
+
+    console.log(val);
 
     this.service.AddUser(val).subscribe(
       response => { //alert('User Added Successfully.');

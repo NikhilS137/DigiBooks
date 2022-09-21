@@ -57,7 +57,9 @@ export class AddbookComponent implements OnInit {
            setTimeout(() => {
                               this.alert=false;
                           }, 4000); //alert will disappear after 4 sec
-        this.router.navigate(['/author']);     
+        this.router.navigate(['/author']).then(() => {
+          window.location.reload();
+        });     
     }
     );
   }

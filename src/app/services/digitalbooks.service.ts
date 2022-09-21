@@ -42,6 +42,11 @@ export class DigitalBooksService {
         return this.https.post<any>(this.baseUrl + "Login",val)
     }
 
+     // Get All Books
+     GetAllBooks():Observable<any[]>{
+        return this.https.get<any>(this.baseUrl +"Books/GetAllBooks");
+    }
+
     // Search books
     SearchBooks(c:string, aID:string, p: number ):Observable<any[]>{
         return this.https.get<any>(this.baseUrl +"SearchBooks/"+ c+"/"+aID+"/"+p);
@@ -65,8 +70,12 @@ export class DigitalBooksService {
     }
 
     // Purchase 
+    // PurchaseBook(purchases : purchase):Observable<purchase>{
+    //     return this.https.post<purchase>(this.baseUrl + "Purchases/buybook",purchases);
+    // }
+    // Purchase 
     PurchaseBook(purchases : purchase):Observable<purchase>{
-        return this.https.post<purchase>(this.baseUrl + "Purchases/buybook",purchases);
+        return this.https.post<purchase>(this.baseUrl + "Purchases/Purchasebook",purchases);
     }
 
     //Book History

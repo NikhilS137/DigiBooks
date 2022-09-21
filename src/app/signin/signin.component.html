@@ -1,19 +1,37 @@
 <div class="container bg-light">
-    <!-- Email input -->
+
+  <form [formGroup]="signinForm" >
+
+    <!-- UserName input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="userName">UserName</label>
-      <input type="text" id="userName" class="form-control" [(ngModel)]="usernameC"  placeholder="UserName"  />
+      <!-- <input type="text" id="userName" class="form-control" [(ngModel)]="usernameC"  placeholder="UserName"  /> -->
+      <input type="text" id="userName" class="form-control" formControlName="user"  placeholder="UserName"  />
+     
+      <div class="text-danger" *ngIf="user && user.invalid && user.touched">
+        Please enter Username .
+      </div>
+     
     </div>
+    
+
   
     <!-- Password input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="form2Example2">Password</label>
-      <input type="password" id="form2Example2" class="form-control" [(ngModel)]="passwordC"  placeholder="Password" />
+      <!-- <input type="password" id="form2Example2" class="form-control" [(ngModel)]="passwordC"  placeholder="Password" /> -->
+      <input type="password" id="form2Example2" class="form-control" formControlName="password"  placeholder="Password" />
+
+      <div class="text-danger" *ngIf="password && password.invalid && password.touched">
+        Please enter Password .
+      </div>
+
     </div>
   
- 
   
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4" (click)="login()">Sign in</button>
-  
+    <button type="button" [disabled]="signinForm.invalid" (click)="login()" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <!-- (click)="login()" -->
+  </form>
+
   </div>

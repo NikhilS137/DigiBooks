@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
    alert:boolean=false;
    isLoggedIn = false;
    UserName:string="";
+   Role : string ="";
   ModalTitle:string="";
   ActivateSignupComp :boolean=false;
 
@@ -82,6 +83,8 @@ export class HeaderComponent implements OnInit {
    console.log(localStorage.getItem('user'));
    let user = JSON.parse(localStorage.getItem('user') || '');
    this.UserName = user.userName;
+   user.roleId == "1" ? this.Role = "Author" : this.Role = "Reader" ;
+   
   }
 
   closeAlert(){

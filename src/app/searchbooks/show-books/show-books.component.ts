@@ -19,6 +19,7 @@ export class ShowBooksComponent implements OnInit{
     ngOnInit(): void {
     }
     purchaseClick(item:Book){
+        console.log(item);
         this.book =item; 
         this.bookID= this.book.bookId;
         this.display= 'block';

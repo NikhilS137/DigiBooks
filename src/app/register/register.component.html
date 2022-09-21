@@ -1,0 +1,86 @@
+<div class="container bg-light">
+
+    <form [formGroup]="signupForm" >
+  
+      <div class="form-outline mb-4">
+        <label class="form-label" for="firstName">First Name</label>
+        <input type="text"  class="form-control" formControlName="firstName"  placeholder="First Name"  />
+       
+        <div class="text-danger" *ngIf="f.firstName && f.firstName.invalid && f.firstName.touched">
+          Please enter first name .
+        </div>
+       
+      </div>
+    
+      <div class="form-outline mb-4">
+        <label class="form-label" for="lastName">Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName"  placeholder="Last Name" />  
+        <div class="text-danger" *ngIf="f.lastName && f.lastName.invalid && f.lastName.touched">
+          Please enter last name .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">Username</label>
+        <input type="text" class="form-control" formControlName="userName"  placeholder="Username" />  
+        <div class="text-danger" *ngIf="f.userName && f.userName.invalid && f.userName.touched">
+          Please enter username .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="emailId">Email ID</label>
+        <input type="text" class="form-control" formControlName="emailId"  placeholder="Email ID" />  
+        <div class="text-danger" *ngIf="f.emailId && f.emailId.invalid && f.emailId.touched">
+          Please enter valid email ID .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="confirmEmailId">Confirm Email ID</label>
+        <input type="text" class="form-control" formControlName="confirmEmailId"  placeholder="Confirm Email ID" />  
+        <div class="text-danger" *ngIf="f.confirmEmailId && f.confirmEmailId.invalid && f.confirmEmailId.touched">
+          Please enter valid confirm email id .
+        </div>  
+      </div>
+    
+      <div class="form-outline mb-4">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password"  placeholder="Password" />  
+        <div class="text-danger" *ngIf="f.password && f.password.invalid && f.password.touched">
+          Please enter password .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword"  placeholder="Password" />  
+        <div class="text-danger" *ngIf="f.confirmPassword && f.confirmPassword.invalid && f.confirmPassword.touched">
+          Please enter  password .
+        </div>  
+      </div>
+
+      <div class="form-check">
+        <label for="role">Roles</label>
+                <div *ngFor="let role of RoleList">
+              <input type="radio" formControlName="roles" [(ngModel)]="radioSelected" value="{{role.roleId}}" /> 
+              {{role.roleName}}
+            </div>
+            <!-- </li>
+         </ul>  -->
+      </div>
+    
+    
+      <!-- Submit button -->
+      <button type="button" [disabled]="signupForm.invalid" (click)="SignupClick()" class="btn btn-primary btn-block mb-4">Sign Up</button>
+    </form>
+  
+    </div>
+
+
+    <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            User registered successfully.
+          <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
